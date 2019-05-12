@@ -1,11 +1,17 @@
 class Cubie
 
+  attr_reader :position
+
   def initialize(position)
     @position = position
   end
 
   def same? cubie
-    return true
+    self.canonical_form == cubie.canonical_form
+  end
+
+  def canonical_form
+    @position.chars.sort.join
   end
 
 end

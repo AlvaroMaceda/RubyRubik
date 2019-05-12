@@ -16,9 +16,15 @@ describe 'Cubie' do
       expect(cubie_a.same? cubie_b).to be(true)
     end
 
-    it 'it\'s not the same of another cubie' do
+    it 'it\'s not the same of another corner cubie' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('flb')
+      expect(cubie_a.same? cubie_b).to be(false)
+    end
+
+    it 'it\'s not the same of another edge cubie' do
+      cubie_a = Cubie.new('urb')
+      cubie_b = Cubie.new('ur')
       expect(cubie_a.same? cubie_b).to be(false)
     end
 
@@ -42,9 +48,15 @@ describe 'Cubie' do
       expect(cubie_a.same? cubie_b).to be(true)
     end
 
-    it 'it\'s not the same of another cubie' do
+    it 'it\'s not the same of another edge cubie' do
       cubie_a = Cubie.new('uf')
       cubie_b = Cubie.new('ub')
+      expect(cubie_a.same? cubie_b).to be(false)
+    end
+
+    it 'it\'s not the same of another corner cubie' do
+      cubie_a = Cubie.new('uf')
+      cubie_b = Cubie.new('ufb')
       expect(cubie_a.same? cubie_b).to be(false)
     end
 
