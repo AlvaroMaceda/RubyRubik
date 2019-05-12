@@ -10,6 +10,8 @@ class Cubie
     self.canonical_form == cubie.canonical_form
   end
 
+  protected
+
   def canonical_form
     @position.chars.sort.join
   end
