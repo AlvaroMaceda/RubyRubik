@@ -1,12 +1,64 @@
+require_relative 'permutation.rb'
 
-F = 10
+# p1 = Permutation.new({
+#                           'uf' => 'ul',
+#                           'ul' => 'ub',
+#                           'ub' => 'ur',
+#                           'ur' => 'uf'
+#                       })
+#
+# p p1.cycles
 
-class Banana
-  F = 100
-  def method_missing(*args)
-    # puts args
-  end
-end
+# p1 = {
+#     :a => :b,
+#     :b => :c,
+#     :c => :a
+# }
+# p1 = Permutation.new(p1)
+#
+# p2 = {
+#     :a => :c,
+#     :c => :a,
+#     :j => :k,
+#     :k => :j
+# }
+# p2 = Permutation.new(p2)
+#
+# p12 = p1 * p2
+# puts p12
+#
 
-puts Banana.const_get('F')
-Banana.new.bacalao(3)
+F = Permutation.new({
+  'uf'=>'ul',
+  'ul'=>'ub',
+  'ub'=>'ur',
+  'ur'=>'uf'
+})
+
+R = Permutation.new({
+'ur'=>'br',
+'br'=>'dr',
+'dr'=>'fr',
+'fr'=>'ur'
+})
+
+
+
+FR = F*R
+puts FR
+
+a = {
+    "a" => "b",
+    :c => :d,
+    [1] => [2,3]
+}
+
+b = {
+    :c => :d,
+    "a" => "b",
+    [1] => [2,3]
+}
+
+puts "Iguales" if a==b
+
+

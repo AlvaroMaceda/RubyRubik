@@ -10,25 +10,25 @@ describe 'Cubie' do
 
   context 'Corner Cubies:' do
 
-    it 'it\'s the same of the same cubie' do
+    it 'is the same of the same cubie' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('urb')
       expect(cubie_a.same? cubie_b).to be(true)
     end
 
-    it 'it\'s not the same of another corner cubie' do
+    it 'is not the same of another corner cubie' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('flb')
       expect(cubie_a.same? cubie_b).to be(false)
     end
 
-    it 'it\'s not the same of another edge cubie' do
+    it 'is not the same of another edge cubie' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('ur')
       expect(cubie_a.same? cubie_b).to be(false)
     end
 
-    it 'it\'s the same if its rotated' do
+    it 'is the same if its rotated' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('bur')
       cubie_c = Cubie.new('rbu')
@@ -42,25 +42,25 @@ describe 'Cubie' do
 
   context 'Edge cubies:' do
 
-    it 'it\'s the same of the same cubie' do
+    it 'is the same of the same cubie' do
       cubie_a = Cubie.new('bl')
       cubie_b = Cubie.new('bl')
       expect(cubie_a.same? cubie_b).to be(true)
     end
 
-    it 'it\'s not the same of another edge cubie' do
+    it 'is not the same of another edge cubie' do
       cubie_a = Cubie.new('uf')
       cubie_b = Cubie.new('ub')
       expect(cubie_a.same? cubie_b).to be(false)
     end
 
-    it 'it\'s not the same of another corner cubie' do
+    it 'is not the same of another corner cubie' do
       cubie_a = Cubie.new('uf')
       cubie_b = Cubie.new('ufb')
       expect(cubie_a.same? cubie_b).to be(false)
     end
 
-    it 'it\'s the same if its flipped' do
+    it 'is the same if its flipped' do
       cubie_a = Cubie.new('uf')
       cubie_b = Cubie.new('fu')
       expect(cubie_a.same? cubie_b).to be(true)
