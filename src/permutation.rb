@@ -1,7 +1,5 @@
 class Permutation
 
-  attr_reader :changes
-
   def initialize(changes)
     # Permutations are given in form:
     #     :a => :b,
@@ -15,6 +13,10 @@ class Permutation
     # so it will be only one image per origin
     # But we must check for biyective conditions
     check_biyective
+  end
+
+  def changes
+    @changes.clone freeze:true
   end
 
 
@@ -86,23 +88,13 @@ class Permutation
   end
 
 
-  def cycles_old
-    # TODO: refactor this, is uninteligible
-    permutations = @changes
-    the_cycles = []
-    until permutations.empty?
-      cycle = []
-      origin = permutations.keys[0]
-      until cycle.include?(origin)
-        cycle << origin
-        destination = permutations[origin]
-        permutations.delete origin
-        origin = destination
-      end
-      the_cycles << cycle
-    end
+  # Power: repeat permutation N times
+  def ^(n)
+    return Permutation::IDENTITY if n==0
 
-    the_cycles
+    res = self
+    (n-1).times {res*=self}
+    res
   end
 
 

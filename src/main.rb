@@ -1,67 +1,65 @@
 require_relative 'permutation.rb'
 
-# p1 = Permutation.new({
-#                           'uf' => 'ul',
-#                           'ul' => 'ub',
-#                           'ub' => 'ur',
-#                           'ur' => 'uf'
-#                       })
+
+# F = Permutation.new({
+#   'uf'=>'ul',
+#   'ul'=>'ub',
+#   'ub'=>'ur',
+#   'ur'=>'uf'
+# })
 #
-# p p1.cycles
-
-# p1 = {
-#     :a => :b,
-#     :b => :c,
-#     :c => :a
-# }
-# p1 = Permutation.new(p1)
-#
-# p2 = {
-#     :a => :c,
-#     :c => :a,
-#     :j => :k,
-#     :k => :j
-# }
-# p2 = Permutation.new(p2)
-#
-# p12 = p1 * p2
-# puts p12
-#
-
-F = Permutation.new({
-  'uf'=>'ul',
-  'ul'=>'ub',
-  'ub'=>'ur',
-  'ur'=>'uf'
-})
-
-R = Permutation.new({
-'ur'=>'br',
-'br'=>'dr',
-'dr'=>'fr',
-'fr'=>'ur'
-})
+# R = Permutation.new({
+# 'ur'=>'br',
+# 'br'=>'dr',
+# 'dr'=>'fr',
+# 'fr'=>'ur'
+# })
 
 
 
-FR = F*R
-puts FR
+p = Permutation.new({
+                    :a => :b,
+                    :b => :c,
+                    :c => :a
+                    })
+expected_product = Permutation.new({
+                                       :a => :c,
+                                       :b => :a,
+                                       :c => :b
+                                   })
+p p.cycles
+p p*p
+p p*p*p*p*p*p*p
 
-a = {
-    "a" => "b",
-    :c => :d,
-    [1] => [2,3]
-}
+# permutation_changes = {:a=>:b, :b=>:c, :c=>:a}
+# changes_values = [:b,:c,:a]
+# remaining = permutation_changes.delete_if do |key,_|
+#   puts "key: #{key}"
+#   changes_values.include? key
+# end
 
-b = {
-    :c => :d,
-    "a" => "b",
-    [1] => [2,3]
-}
 
-p a.keys.first
-p a.first[0]
 
-#puts "Iguales" if a==b
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

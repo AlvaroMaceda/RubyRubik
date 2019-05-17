@@ -99,6 +99,63 @@ describe 'Permutation' do
 
   end
 
+  it 'pipes with itself' do
+    p = Permutation.new({
+                            :a => :b,
+                            :b => :c,
+                            :c => :a
+                        })
+    expected_product = Permutation.new({
+                                           :a => :c,
+                                           :b => :a,
+                                           :c => :b
+                                       })
+    p2 = p*p
+    expect(p2).to eql(expected_product)
+  end
+
+  it 'calculates its positive power' do
+    p = Permutation.new({
+                             :a => :b,
+                             :b => :c,
+                             :c => :a
+                         })
+        expected = Permutation.new({
+                                   :a => :c,
+                                   :b => :a,
+                                   :c => :b
+                               })
+
+    p2 = p^2
+    expect(p2).to eql(expected)
+
+    # The above permutation has cycle length=3
+    p3 = p^3
+    expected = Permutation::IDENTITY
+    expect(p3).to eql(expected)
+
+    # 7 = 3+3+1 = identity*identity*p = p
+    p7 = p^7
+    expected = p
+    expect(p7).to eql(expected)
+  end
+
+  it 'power to 0 equals identity' do
+    p = Permutation.new({
+                            :a => :b,
+                            :b => :c,
+                            :c => :a,
+                            :d => :e,
+                            :e => :d
+                        })
+    p0 = p^0
+    expect(p0).to eql(Permutation::IDENTITY)
+  end
+
+  xit 'calculates its negative power' do
+
+  end
+
   it 'has an identity pemutation' do
     p1 = Permutation.new({
                              :a => :b,
