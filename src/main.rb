@@ -59,6 +59,9 @@ b = {
     [1] => [2,3]
 }
 
-puts "Iguales" if a==b
+p a.keys.first
+p a.first[0]
+
+#puts "Iguales" if a==b
 
 

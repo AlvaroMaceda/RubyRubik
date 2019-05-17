@@ -147,8 +147,6 @@ describe 'Permutation' do
         [:a,:b],[:c, :e, :d]
     ]
     # TODO: the order of cycles should be no relevant
-    # We must check not for equality, but for same elements in the same
-    # "cyclic order". We would need a custom expectation.
 
     expect(p.cycles).to eql(expected_cycles)
 

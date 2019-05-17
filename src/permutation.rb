@@ -1,12 +1,13 @@
 class Permutation
 
+  attr_reader :changes
+
   def initialize(changes)
     # Permutations are given in form:
     #     :a => :b,
     #     :b => :c,
     #     :c => :a
     # which means: element :a transforms in element :b
-
     @changes = changes
 
     # A permutation must be a biyective function
@@ -16,9 +17,11 @@ class Permutation
     check_biyective
   end
 
+
   def apply_to(set)
-    set.map {|element| apply_permutation(element)}
+    set.map {|element| image_of(element)}
   end
+
 
   # Pipelining (beware: not composition!) of permutations
   # This permutation will be applied FIRST
@@ -33,8 +36,8 @@ class Permutation
     #   c => a
     #
     # p2:
-    #   a => c
     #   c => a
+    #   a => c
     #   j => k
     #   k => j
     #
@@ -57,12 +60,10 @@ class Permutation
 
     # First, we apply the new permutation to the images of this permutation
     images = permutation.apply_to(images)
-    # puts "After aplying the second permutation:"
-    # p Hash[origins.zip(images)]
 
     # Second, we remove the already applied items for the second pemutation
     # Beware: we must compare with the original images
-    remaining = permutation.changes.reject { |key, elem| @changes.values.include? key }
+    remaining = permutation.changes.delete_if { |key, _| @changes.values.include? key }
 
     # Third, we add the second permutation remaining changes to the list of changes
     origins += remaining.keys
@@ -78,16 +79,18 @@ class Permutation
     Permutation.new(new_changes)
   end
 
+
   # Inverse permutation
   def !
     Permutation.new @changes.invert
   end
 
-  def cycles
+
+  def cycles_old
     # TODO: refactor this, is uninteligible
     permutations = @changes
     the_cycles = []
-    while permutations.length > 0
+    until permutations.empty?
       cycle = []
       origin = permutations.keys[0]
       until cycle.include?(origin)
@@ -102,30 +105,53 @@ class Permutation
     the_cycles
   end
 
-  def changes
-    @changes
+
+  def cycles
+    remaining_changes = @changes.clone
+
+    calculated_cycles = []
+    until remaining_changes.empty?
+      cycle_elements = cycle_from(remaining_changes.keys.first)
+      calculated_cycles << cycle_elements
+      remaining_changes.delete_if { |key, _| cycle_elements.include? key }
+    end
+
+    calculated_cycles
   end
+
+
+  def cycle_from(element)
+    cycle = []
+    until cycle.include? element
+      cycle << element
+      element = image_of(element)
+    end
+    cycle
+  end
+
 
   def to_s
     @changes.to_s
   end
 
+
   def eql?(permutation)
     @changes == permutation.changes
   end
 
-private
 
-
-  def apply_permutation(element)
+  def image_of(element)
     @changes[element] || element
   end
+
+private
 
   def check_biyective
     # A biyective function is a inyective and surjective function
     check_inyective
     check_surjective
   end
+
 
   def check_inyective
     # injective: F(x)=F(y)⟹x=y
@@ -150,6 +176,7 @@ private
     check_no_duplicates_on_right
   end
 
+
   def check_surjective
     # surjective: for all b∈B there is some a∈A such that F(a)=b.
     # ------------------------------------------------------------
@@ -172,6 +199,7 @@ private
     end
   end
 
+
   def check_left_elements_on_right
     images = @changes.values
 
@@ -182,13 +210,16 @@ private
     end
   end
 
+
   def has_duplicates?(array)
     array.uniq.length != array.length
   end
 
+
   def get_duplicates(array)
     array.select{|element| array.count(element) > 1 }.uniq
   end
+
 
   def check_no_duplicates_on_right
     right_elements = @changes.values
