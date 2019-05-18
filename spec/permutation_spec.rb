@@ -120,11 +120,11 @@ describe 'Permutation' do
                              :b => :c,
                              :c => :a
                          })
-        expected = Permutation.new({
-                                   :a => :c,
-                                   :b => :a,
-                                   :c => :b
-                               })
+    expected = Permutation.new({
+                               :a => :c,
+                               :b => :a,
+                               :c => :b
+                           })
 
     p2 = p^2
     expect(p2).to eql(expected)
@@ -152,8 +152,26 @@ describe 'Permutation' do
     expect(p0).to eql(Permutation::IDENTITY)
   end
 
-  xit 'calculates its negative power' do
+  it 'calculates its negative power' do
 
+    p = Permutation.new({
+                            :a => :b,
+                            :b => :c,
+                            :c => :a,
+                            :d => :e,
+                            :e => :d
+                        })
+    pinv = p^-1
+    expect(pinv).to eql(!p)
+
+    # Cycles: [[:a, :b, :c], [:d, :e]]
+    expect(p^-6).to eql(Permutation::IDENTITY)
+
+    cycle_of_two = Permutation.new({
+                                       :d=>:e,
+                                       :e=>:d
+                                   })
+    expect(p^-3).to eql(cycle_of_two)
   end
 
   it 'has an identity pemutation' do
@@ -171,7 +189,28 @@ describe 'Permutation' do
     expect(p2).to eql(p1)
   end
 
-  xit 'is associative' do
+  it 'is associative' do
+    p1 = Permutation.new({
+                             :a => :b,
+                             :b => :e,
+                             :c => :a,
+                             :d => :c,
+                             :e => :d
+                         })
+    p2 = Permutation.new({
+                             :a => :b,
+                             :b => :c,
+                             :c => :a
+                         })
+    p3 = Permutation.new({
+                             :a => :c,
+                             :b => :a,
+                             :c => :b,
+                             :d => :e,
+                             :e => :d
+                         })
+
+    expect((p1)*(p2*p3)).to eql((p1*p2)*p3)
   end
 
   it 'obtains the cycle form' do

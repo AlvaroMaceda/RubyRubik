@@ -65,7 +65,7 @@ class Permutation
 
     # Second, we remove the already applied items for the second pemutation
     # Beware: we must compare with the original images
-    remaining = permutation.changes.delete_if { |key, _| @changes.values.include? key }
+    remaining = permutation.changes.reject { |key, _| @changes.values.include? key }
 
     # Third, we add the second permutation remaining changes to the list of changes
     origins += remaining.keys
@@ -90,10 +90,9 @@ class Permutation
 
   # Power: repeat permutation N times
   def ^(n)
-    return Permutation::IDENTITY if n==0
-
-    res = self
-    (n-1).times {res*=self}
+    base = n>0 ? self : !self
+    res = Permutation::IDENTITY
+    (n.abs).times {res*=base}
     res
   end
 
