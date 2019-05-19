@@ -1,7 +1,7 @@
 require 'rspec'
 require './src/permutation.rb'
 
-describe 'Permutation' do
+RSpec.describe 'Permutation' do
 
   it 'creates the class' do
     p = Permutation.new({})
