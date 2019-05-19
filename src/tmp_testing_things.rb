@@ -15,8 +15,31 @@ require_relative 'rotation_of.rb'
 # 'fr'=>'ur'
 # })
 
-array1 = %i[a b c d]
-p rotation_of?(array1, array1)
+actual = [
+    [:e, :d, :c],
+    [:b,:a],
+    # [:banana]
+]
+expected = [
+    [:a,:b],
+    [:c, :e, :d],
+    [:banana]
+]
+
+def banana(actual,expected)
+  until actual.empty?
+    checking = actual.shift
+    i = expected.index { |element| rotation_of?(checking,element) }
+    return false unless i
+
+    expected.delete_at i
+  end
+  expected.empty?
+end
+
+puts banana(actual,expected)
+
+
 
 
 

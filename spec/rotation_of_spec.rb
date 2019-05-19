@@ -1,7 +1,7 @@
 require 'rspec'
 require './src/rotation_of.rb'
 
-RSpec.describe 'is_rotation_of' do
+RSpec.describe 'rotation_of?' do
 
   it 'accepts the array unchanged' do
     array1 = %i[a b c d]
@@ -33,10 +33,10 @@ RSpec.describe 'is_rotation_of' do
     array2 = %w[one one two three]
     expect(rotation_of?(array1, array2)).to be true
 
-    array2 = %[one one three two]
+    array2 = %w[one one three two]
     expect(rotation_of?(array1, array2)).to be false
 
-    array2 = %[one one two three]
+    array2 = %w[one one two three]
     expect(rotation_of?(array1, array2)).to be true
   end
 

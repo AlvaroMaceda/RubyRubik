@@ -221,15 +221,9 @@ RSpec.describe 'Permutation' do
                             :c => :a
                         })
     expected_cycles = [
-        [:a, :b, :c]
+        [:c, :a, :b]
     ]
-    # TODO: there are other posible valid cycles:
-    # [:b, :c, :a]
-    # [:c, :b, :a]
-    # We need a custom expectation to check for "rotations"
-    # of an array and give them as valid
-    #
-    expect(p.cycles).to be_a_rotation_of(expected_cycles)
+    expect(p.cycles).to be_the_same_cycles_as(expected_cycles)
 
 
     p = Permutation.new({
@@ -242,8 +236,7 @@ RSpec.describe 'Permutation' do
     expected_cycles = [
         [:a,:b],[:c, :e, :d]
     ]
-    # TODO: the order of cycles should be no relevant
-    expect(p.cycles).to eql(expected_cycles)
+    expect(p.cycles).to be_the_same_cycles_as(expected_cycles)
 
   end
 
