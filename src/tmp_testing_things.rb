@@ -1,5 +1,5 @@
 require_relative 'permutation.rb'
-
+require_relative 'rotation_of.rb'
 
 # F = Permutation.new({
 #   'uf'=>'ul',
@@ -15,55 +15,29 @@ require_relative 'permutation.rb'
 # 'fr'=>'ur'
 # })
 
+actual = [
+    [:e, :d, :c],
+    [:b,:a],
+    # [:banana]
+]
+expected = [
+    [:a,:b],
+    [:c, :e, :d],
+    [:banana]
+]
 
+def banana(actual,expected)
+  until actual.empty?
+    checking = actual.shift
+    i = expected.index { |element| rotation_of?(checking,element) }
+    return false unless i
 
-p1 = Permutation.new({
-                        :a => :b,
-                        :b => :e,
-                        :c => :a,
-                        :d => :c,
-                        :e => :d
-                    })
-p2 = Permutation.new({
-                         :a => :b,
-                         :b => :c,
-                         :c => :a
-                     })
-p3 = Permutation.new({
-                        :a => :c,
-                        :b => :a,
-                        :c => :b,
-                        :d => :e,
-                        :e => :d
-                    })
+    expected.delete_at i
+  end
+  expected.empty?
+end
 
-
-p2i = Permutation.new({
-                         :b => :a,
-                         :c => :b,
-                         :a => :c
-                     })
-
-p = Permutation.new({
-                        :a => :b,
-                        :b => :c,
-                        :c => :a,
-                        :d => :e,
-                        :e => :d
-                    })
-p p.cycles
-p p^-6
-p p^-3
-p p^6
-
-# puts (p1*p2*p3).changes
-# puts ((p1)*(p2*p3)).changes
-# puts ((p1*p2)*(p3)).changes
-
-#p (p1*p2*p3).cycles
-
-
-
+puts banana(actual,expected)
 
 
 

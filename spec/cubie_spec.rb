@@ -1,7 +1,7 @@
 require 'rspec'
 require './src/cubie.rb'
 
-describe 'Cubie' do
+RSpec.describe 'Cubie' do
 
   it 'creates the class' do
     cubie = Cubie.new('ufl')

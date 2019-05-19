@@ -1,7 +1,8 @@
 require 'rspec'
+require 'custom_matchers'
 require './src/permutation.rb'
 
-describe 'Permutation' do
+RSpec.describe 'Permutation' do
 
   it 'creates the class' do
     p = Permutation.new({})
@@ -35,8 +36,7 @@ describe 'Permutation' do
     }.to raise_error RuntimeError
   end
 
-
-  it 'applies a permutation with all elements present' do
+  it 'applies a permutation to a set' do
     p = Permutation.new({
                             :a => :b,
                             :b => :c,
@@ -61,7 +61,7 @@ describe 'Permutation' do
 
   end
 
-  it 'calculates the inverse' do
+  it 'calculates its inverse' do
     # The inverse of a permutation applied after or before the permutation is the identity permutation
     p = Permutation.new({
                               :a => :b,
@@ -221,15 +221,9 @@ describe 'Permutation' do
                             :c => :a
                         })
     expected_cycles = [
-        [:a, :b, :c]
+        [:c, :a, :b]
     ]
-    # TODO: there are other posible valid cycles:
-    # [:b, :c, :a]
-    # [:c, :b, :a]
-    # We need a custom expectation to check for "rotations"
-    # of an array and give them as valid
-    #
-    expect(p.cycles).to eql(expected_cycles)
+    expect(p.cycles).to be_the_same_cycles_as(expected_cycles)
 
 
     p = Permutation.new({
@@ -242,9 +236,7 @@ describe 'Permutation' do
     expected_cycles = [
         [:a,:b],[:c, :e, :d]
     ]
-    # TODO: the order of cycles should be no relevant
-
-    expect(p.cycles).to eql(expected_cycles)
+    expect(p.cycles).to be_the_same_cycles_as(expected_cycles)
 
   end
 
