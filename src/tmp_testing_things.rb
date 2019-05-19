@@ -1,4 +1,6 @@
 require_relative 'permutation.rb'
+require_relative 'rotation_of.rb'
+
 # F = Permutation.new({
 #   'uf'=>'ul',
 #   'ul'=>'ub',
@@ -13,13 +15,8 @@ require_relative 'permutation.rb'
 # 'fr'=>'ur'
 # })
 
-
-o = %i[a b c d]
-r1 = %i[]
-r2 = %i[]
-nr1 = []
-nr2 = []
-
+array1 = %i[a b c d]
+p rotation_of?(array1, array1)
 
 
 

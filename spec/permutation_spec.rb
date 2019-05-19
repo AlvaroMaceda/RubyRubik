@@ -243,7 +243,6 @@ RSpec.describe 'Permutation' do
         [:a,:b],[:c, :e, :d]
     ]
     # TODO: the order of cycles should be no relevant
-
     expect(p.cycles).to eql(expected_cycles)
 
   end
