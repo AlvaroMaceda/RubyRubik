@@ -1,11 +1,6 @@
-module RotationChecking
+module RotationOf
 
-  puts "Entering module"
-
-  class Array
-
-    puts "Messing with the array"
-
+  module Array
     def rotation_of?(array)
 
       # Works searching the first element of self in array and rotating array
@@ -24,12 +19,11 @@ module RotationChecking
 
       false
     end
-
-    puts Array.name
-
   end
 
 end
+
+Array.include RotationOf::Array
 
 
 

@@ -1,6 +1,5 @@
 require 'rspec/expectations'
-require './src/rotation_checking.rb'
-
+require './src/rotation_of.rb'
 
 RSpec::Matchers.define :be_the_same_cycles_as do |expected|
 
@@ -11,7 +10,7 @@ RSpec::Matchers.define :be_the_same_cycles_as do |expected|
 
     until actual.empty?
       checking = actual.shift
-      i = expected.index { |element| rotation_of?(checking,element) }
+      i = expected.index { |element| checking.rotation_of?(element) }
       return false unless i
 
       expected.delete_at i

@@ -1,16 +1,12 @@
-require_relative 'cube_rotation.rb'
-require_relative 'rotation_checking.rb'
+# require_relative 'cube_rotation.rb'
+require_relative 'rotation_of.rb'
 
-F = CubeRotation::F
+# F = CubeRotation::F
 # p F.cycles
 
 
-include RotationChecking
-# [].rotation_of? []
-
-p RotationChecking.Array
-
-
+Array.include RotationOf
+puts [1,2,3].rotation_of? [3,1,2]
 
 
 
