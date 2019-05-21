@@ -11,6 +11,8 @@ class CubeRotation < Permutation
 
   public
 
+  IDENTITY = CubeRotation.new({})
+
   # Corners are listed always in clockwise order
 
   F = CubeRotation.new(

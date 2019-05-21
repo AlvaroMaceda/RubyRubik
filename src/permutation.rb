@@ -92,7 +92,7 @@ class Permutation
   # Power: repeat permutation N times
   def ^(n)
     base = n>0 ? self : !self
-    res = IDENTITY
+    res = self.class::IDENTITY
     (n.abs).times {res*=base}
     res
   end

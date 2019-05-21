@@ -3,13 +3,18 @@ require './src/cubie.rb'
 
 RSpec.describe 'Cubie' do
 
-  it 'creates objects' do
+  it 'can be create from a string' do
     cubie = Cubie.new('ufl')
     expect(cubie).to be_kind_of(Cubie)
   end
 
   it 'converts to string' do
     cubie = Cubie.new('ufl')
+    expect(cubie.to_s).to eql('ufl')
+  end
+
+  it 'can be created from another Cubie' do
+    cubie = Cubie.new(Cubie.new('ufl'))
     expect(cubie.to_s).to eql('ufl')
   end
 
