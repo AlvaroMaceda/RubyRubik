@@ -1,23 +1,35 @@
 module RotationChecking
 
-end
+  puts "Entering module"
 
-def rotation_of?(array1, array2)
+  class Array
 
-  # Works searching the first element of array1 in array2 and rotating array2
-  # so that element be first, then comparing.
-  # We must search all occurrences of the first element because it can be duplicated
-  #
-  return true if array1 == [] and array2 == []
-  return false unless array1.length == array2.length
+    puts "Messing with the array"
 
-  possible_rotations =  array2.each_index.select { |index| array2[index] == array1.first}
+    def rotation_of?(array)
 
-  until possible_rotations.empty?
-    possible_rotation = possible_rotations.shift
-    return true if array2.rotate(possible_rotation) == array1
+      # Works searching the first element of self in array and rotating array
+      # so that element be first, then comparing.
+      # We must search all occurrences of the first element because it can be duplicated
+      #
+      return true if self == [] and array == []
+      return false unless self.length == array.length
+
+      possible_rotations =  array.each_index.select { |index| array[index] == self.first}
+
+      until possible_rotations.empty?
+        possible_rotation = possible_rotations.shift
+        return true if array.rotate(possible_rotation) == self
+      end
+
+      false
+    end
+
+    puts Array.name
+
   end
 
-  false
 end
+
+
 

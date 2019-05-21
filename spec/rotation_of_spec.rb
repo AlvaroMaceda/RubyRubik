@@ -23,7 +23,7 @@ RSpec.describe 'rotation_of?' do
   it 'returns false if not a rotation' do
     array1 = %i[a b c d]
     array2 = %i[a b d c]
-    expect(rotation_of?(array1, array2)).to be false
+    expect(array1.rotation_of? array2).to be false
 
     # array2 = %i[ ]
   end

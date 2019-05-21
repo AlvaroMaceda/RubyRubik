@@ -1,17 +1,14 @@
 require_relative 'cube_rotation.rb'
+require_relative 'rotation_checking.rb'
 
 F = CubeRotation::F
+# p F.cycles
 
-p F.cycles
 
-class Array
-  def banana
-    puts "Banana!"
-  end
-end
+include RotationChecking
+# [].rotation_of? []
 
-[].banana
-
+p RotationChecking.Array
 
 
 
