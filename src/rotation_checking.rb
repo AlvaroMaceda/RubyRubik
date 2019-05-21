@@ -1,3 +1,7 @@
+module RotationChecking
+
+end
+
 def rotation_of?(array1, array2)
 
   # Works searching the first element of array1 in array2 and rotating array2

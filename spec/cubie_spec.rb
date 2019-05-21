@@ -8,6 +8,11 @@ RSpec.describe 'Cubie' do
     expect(cubie).to be_kind_of(Cubie)
   end
 
+  it 'converts to string' do
+    cubie = Cubie.new('ufl')
+    expect(cubie.to_s).to eql('ufl')
+  end
+
   context 'Corner Cubies:' do
 
     it 'is the same of the same cubie' do

@@ -1,6 +1,15 @@
 require_relative './permutation.rb'
+require_relative './cubie.rb'
 
 class CubeRotation < Permutation
+
+  private
+
+  def initialize(changes)
+    super changes.map { |from,to| [Cubie.new(from), Cubie.new(to)] }.to_h
+  end
+
+  public
 
   F = CubeRotation.new(
     'uf' => 'rf',
@@ -14,40 +23,45 @@ class CubeRotation < Permutation
     'dfl' => 'lfu'
   )
 
-  U = CubeRotation.new(
-    'uf' => 'ul',
-    'ul' => 'ub',
-    'ub' => 'ur',
-    'ur' => 'uf',
+  # U = CubeRotation.new(
+  #   'uf' => 'ul',
+  #   'ul' => 'ub',
+  #   'ub' => 'ur',
+  #   'ur' => 'uf',
+  #
+  #   'ufl' => 'ulb',
+  #   'ulb' => 'ubr',
+  #   'ubr' => 'ufr',
+  #   'ufr' => 'urf'
+  # )
 
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => ''
-  )
+  # R = CubeRotation.new(
+  #   'ur' => 'br',
+  #   'fr' => 'ur',
+  #   'dr' => 'fr',
+  #   'br' => 'dr',
+  #
+  #   'urf' => 'bru',
+  #   'ubr' => 'bdr',
+  #   'bdr' => 'dfr',
+  #   'rdf' => 'rfu'
+  # )
 
-  R = CubeRotation.new(
-    'ur' => 'br',
-    'fr' => 'ur',
-    'dr' => 'fr',
-    'br' => 'dr',
+  # x = CubeRotation.new(
+  #   '' => '',
+  #   '' => '',
+  #   '' => '',
+  #   '' => '',
+  #
+  #   '' => '',
+  #   '' => '',
+  #   '' => '',
+  #   '' => ''
+  # )
 
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => ''
-  )
+  def changes
+    @changes.map { |from,to| [from, to] }.to_h
+  end
 
-  x = CubeRotation.new(
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => '',
-
-    '' => '',
-    '' => '',
-    '' => '',
-    '' => ''
-  )
 
 end

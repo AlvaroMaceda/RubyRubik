@@ -1,5 +1,5 @@
 require 'rspec'
-require './src/rotation_of.rb'
+require './src/rotation_checking.rb'
 
 RSpec.describe 'rotation_of?' do
 

@@ -6,8 +6,20 @@ class Cubie
     @position = position
   end
 
-  def same? cubie
+  def same?(cubie)
     self.canonical_form == cubie.canonical_form
+  end
+
+  def == cubie
+    self.canonical_form == cubie.canonical_form
+  end
+
+  def eql?(cubie)
+    self == cubie
+  end
+
+  def to_s
+    @position
   end
 
   protected
