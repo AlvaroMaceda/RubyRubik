@@ -3,6 +3,8 @@ require_relative './cubie.rb'
 
 class CubeRotation < Permutation
 
+  protected_methods :new
+
   private
 
   def initialize(changes)

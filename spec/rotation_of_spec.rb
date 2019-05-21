@@ -84,10 +84,10 @@ RSpec.describe 'rotation_of?' do
       string2 = 'ababca'
       expect(string1.rotation_of?(string2)).to be true
 
-      string2 = ''
-      expect(array1.rotation_of?(array2)).to be false
+      string2 = 'abcaba'
+      expect(string1.rotation_of?(string2)).to be false
 
-      string2 = ''
+      string2 = 'caabab'
       expect(string1.rotation_of?(string2)).to be true
     end
 

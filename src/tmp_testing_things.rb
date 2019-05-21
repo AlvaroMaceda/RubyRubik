@@ -5,7 +5,6 @@ require_relative 'rotation_of.rb'
 # p F.cycles
 
 
-Array.include RotationOf
 puts [1,2,3].rotation_of? [3,1,2]
 
 
