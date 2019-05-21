@@ -4,7 +4,7 @@ require './src/permutation.rb'
 
 RSpec.describe 'Permutation' do
 
-  it 'creates the class' do
+  it 'creates objects' do
     p = Permutation.new({})
     expect(p).to be_kind_of(Permutation)
   end

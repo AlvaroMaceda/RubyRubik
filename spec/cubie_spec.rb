@@ -3,7 +3,7 @@ require './src/cubie.rb'
 
 RSpec.describe 'Cubie' do
 
-  it 'creates the class' do
+  it 'creates objects' do
     cubie = Cubie.new('ufl')
     expect(cubie).to be_kind_of(Cubie)
   end
