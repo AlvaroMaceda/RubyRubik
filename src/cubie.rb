@@ -22,6 +22,10 @@ class Cubie
     @position
   end
 
+  def hash
+    self.canonical_form.hash
+  end
+
   protected
 
   def canonical_form

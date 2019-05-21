@@ -15,8 +15,9 @@ class Permutation
     check_biyective
   end
 
+  # This method is suposed to show changes in a human-friendly form
   def changes
-    @changes.clone freeze:true
+    raw_changes
   end
 
 
@@ -65,7 +66,7 @@ class Permutation
 
     # Second, we remove the already applied items for the second pemutation
     # Beware: we must compare with the original images
-    remaining = permutation.changes.reject { |key, _| @changes.values.include? key }
+    remaining = permutation.raw_changes.reject { |key, _| @changes.values.include? key }
 
     # Third, we add the second permutation remaining changes to the list of changes
     origins += remaining.keys
@@ -78,20 +79,20 @@ class Permutation
     new_changes.reject! { |k,e| k == e}
 
     # Et voila! Here is the new permutation
-    Permutation.new(new_changes)
+    self.class.new(new_changes)
   end
 
 
   # Inverse permutation
   def !
-    Permutation.new @changes.invert
+    self.class.new @changes.invert
   end
 
 
   # Power: repeat permutation N times
   def ^(n)
     base = n>0 ? self : !self
-    res = Permutation::IDENTITY
+    res = IDENTITY
     (n.abs).times {res*=base}
     res
   end
@@ -135,7 +136,14 @@ class Permutation
     @changes[element] || element
   end
 
-private
+  protected
+
+  # This method is used for calculations
+  def raw_changes
+    @changes.clone freeze:true
+  end
+
+  private
 
   def check_biyective
     # A biyective function is a inyective and surjective function

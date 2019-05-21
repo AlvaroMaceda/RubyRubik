@@ -13,6 +13,14 @@ RSpec.describe 'Cubie' do
     expect(cubie.to_s).to eql('ufl')
   end
 
+  it 'can be stored in a hash' do
+    hash = {
+        Cubie.new('ur') => Cubie.new('fr'),
+        Cubie.new('bl') => Cubie.new('dr')
+    }
+    expect(hash[Cubie.new('bl')]).to eql(Cubie.new('dr'))
+  end
+
   context 'Corner Cubies:' do
 
     it 'is the same of the same cubie' do

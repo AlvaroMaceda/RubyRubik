@@ -3,8 +3,6 @@ require_relative './cubie.rb'
 
 class CubeRotation < Permutation
 
-  protected_methods :new
-
   private
 
   def initialize(changes)
@@ -13,16 +11,18 @@ class CubeRotation < Permutation
 
   public
 
+  # Corners are listed always in clockwise order
+
   F = CubeRotation.new(
     'uf' => 'rf',
     'lf' => 'uf',
     'bf' => 'lf',
     'rf' => 'bf',
 
-    'ufl' => 'rfu',
-    'ufr' => 'rfd',
-    'dfr' => 'lfd',
-    'dfl' => 'lfu'
+    # 'ufl' => 'rfu',
+    # 'urf' => 'rdf',
+    # 'rdf' => 'dlf',
+    # 'dlf' => 'luf'
   )
 
   # U = CubeRotation.new(
@@ -62,7 +62,7 @@ class CubeRotation < Permutation
   # )
 
   def changes
-    @changes.map { |from,to| [from, to] }.to_h
+    @changes.map { |from,to| [from.to_s, to.to_s] }.to_h
   end
 
 
