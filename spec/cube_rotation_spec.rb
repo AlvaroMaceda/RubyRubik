@@ -12,7 +12,7 @@ RSpec.describe 'CubeRotation' do
     expect(Cube::F^4).to eql Cube::IDENTITY
   end
 
-  it 'manages rotations' do
+  xit 'manages rotations' do
     expected_f2 = {
       # 'uf'=>'bf',
       # 'lf'=>'rf',

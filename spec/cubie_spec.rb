@@ -24,17 +24,27 @@ RSpec.describe 'Cubie' do
         Cubie.new('bl') => Cubie.new('dr')
     }
     expect(hash[Cubie.new('bl')]).to eql(Cubie.new('dr'))
+
+    hash = {
+        Cubie.new('urb') => Cubie.new('frb'),
+        Cubie.new('blf') => Cubie.new('dru'),
+        # bfl is not a rotation of blf
+        Cubie.new('bfl') => Cubie.new('bdu')
+    }
+    expect(hash[Cubie.new('blf')]).to eql(Cubie.new('dru'))
+    expect(hash[Cubie.new('fbl')]).to eql(Cubie.new('dru'))
+    expect(hash[Cubie.new('bfl')]).to eql(Cubie.new('bdu'))
   end
 
-  it 'applies a permutation' do
+  xit 'applies a permutation' do
     pending
   end
 
-  it 'applies a string permutation' do
+  xit 'applies a string permutation' do
     pending
   end
 
-  it 'doesn\'t change if the permutation not affects the cubie' do
+  xit 'doesn\'t change if the permutation not affects the cubie' do
     pending
   end
 
@@ -53,7 +63,11 @@ RSpec.describe 'Cubie' do
     # It must give: dfr
     cubie = Cubie.new('luf')
     permutation = { Cubie.new('ufl') => Cubie.new('rfu')}
-    expect(cubie.permute())
+    cubie_permuted = cubie.permute(permutation)
+    expected_cubie = Cubie.new('urf')
+
+    expect().to be(true)
+    raise "TODO"
   end
 
   context 'Corner Cubies:' do

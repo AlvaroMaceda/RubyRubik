@@ -1,3 +1,5 @@
+require_relative 'rotation_of'
+
 class Cubie
 
   attr_reader :position
@@ -6,20 +8,23 @@ class Cubie
     @position = position.to_s
   end
 
-  def == cubie
-    self.canonical_form == cubie.canonical_form
+  def ==(cubie)
+    # self.canonical_form == cubie.canonical_form
+    cubie.position.rotation_of? position
   end
 
-  def same?(cubie)
-    self == cubie
-  end
+  alias_method :same?, :==
+  alias_method :eql?, :==
 
-  def eql?(cubie)
-    self == cubie
+  def permute(permutation)
+    to_element = permutation[self]
+    return self unless to_element
+
+    to_element
   end
 
   def to_s
-    @position
+    @position.to_s
   end
 
   def hash
