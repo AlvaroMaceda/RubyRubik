@@ -44,11 +44,14 @@ RSpec.describe 'Cubie' do
     pending
   end
 
-  xit 'doesn\'t change if the permutation not affects the cubie' do
-    pending
+  it 'doesn\'t change if the permutation not affects the cubie' do
+    cubie = Cubie.new('luf')
+    permutation = { Cubie.new('bdr') => Cubie.new('rfu')}
+    cubie_permuted = cubie.permute(permutation)
+    expect(cubie_permuted.same?cubie).to be(true)
   end
 
-  it 'applies a permutation with rotation' do
+  fit 'applies a permutation with rotation' do
     # Pair each facelet
     # Permutation
     # ufl => rfu
@@ -66,39 +69,50 @@ RSpec.describe 'Cubie' do
     cubie_permuted = cubie.permute(permutation)
     expected_cubie = Cubie.new('urf')
 
-    expect().to be(true)
-    raise "TODO"
+    expect(cubie_permuted.same?(expected_cubie)).to be(true)
   end
 
   context 'Corner Cubies:' do
 
-    it 'is the same of the same cubie' do
+    it 'is equal to the same cubie' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('urb')
       expect(cubie_a.same? cubie_b).to be(true)
     end
 
-    it 'is not the same of another corner cubie' do
+    it 'is not equal to another corner cubie' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('flb')
-      expect(cubie_a.same? cubie_b).to be(false)
+      expect(cubie_a).not_to eql(cubie_b)
     end
 
-    it 'is not the same of another edge cubie' do
+    it 'is not equal to another edge cubie' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('ur')
       expect(cubie_a.same? cubie_b).to be(false)
     end
 
-    it 'is the same if its rotated' do
+    it 'is equal if its rotated' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('bur')
       cubie_c = Cubie.new('rbu')
       cubie_d = Cubie.new('rub')
-      expect(cubie_a.same? cubie_b).to be(true)
-      expect(cubie_a.same? cubie_c).to be(true)
-      expect(cubie_b.same? cubie_c).to be(true)
-      expect(cubie_b.same? cubie_d).to be(false)
+      expect(cubie_a).to eql(cubie_b)
+      expect(cubie_a).to eql(cubie_c)
+      expect(cubie_b).to eql(cubie_c)
+      expect(cubie_a).not_to eql(cubie_d)
+    end
+
+    it 'is the same as the same cubie' do
+      cubie_a = Cubie.new('blf')
+      cubie_b = Cubie.new('blf')
+      expect(cubie_a.same?cubie_b).to be(true)
+    end
+
+    it 'is not the same if it\s rotated' do
+      cubie_a = Cubie.new('blf')
+      cubie_b = Cubie.new('lfb')
+      expect(cubie_a.same?(cubie_b)).to be(false)
     end
 
   end
@@ -106,28 +120,40 @@ RSpec.describe 'Cubie' do
 
   context 'Edge cubies:' do
 
-    it 'is the same of the same cubie' do
+    it 'is equal to the same cubie' do
       cubie_a = Cubie.new('bl')
       cubie_b = Cubie.new('bl')
-      expect(cubie_a.same? cubie_b).to be(true)
+      expect(cubie_a).to eql(cubie_b)
     end
 
-    it 'is not the same of another edge cubie' do
+    it 'is not equal to another edge cubie' do
       cubie_a = Cubie.new('uf')
       cubie_b = Cubie.new('ub')
-      expect(cubie_a.same? cubie_b).to be(false)
+      expect(cubie_a).not_to eql(cubie_b)
     end
 
-    it 'is not the same of another corner cubie' do
+    it 'is not equal to another corner cubie' do
       cubie_a = Cubie.new('uf')
       cubie_b = Cubie.new('ufb')
-      expect(cubie_a.same? cubie_b).to be(false)
+      expect(cubie_a).not_to eql(cubie_b)
     end
 
-    it 'is the same if its flipped' do
+    it 'is equal if its flipped' do
       cubie_a = Cubie.new('uf')
       cubie_b = Cubie.new('fu')
-      expect(cubie_a.same? cubie_b).to be(true)
+      expect(cubie_a).to eql(cubie_b)
+    end
+
+    it 'is the same as the same cubie' do
+      cubie_a = Cubie.new('bl')
+      cubie_b = Cubie.new('bl')
+      expect(cubie_a.same?cubie_b).to be(true)
+    end
+
+    it 'is not the same if it\s flipped' do
+      cubie_a = Cubie.new('uf')
+      cubie_b = Cubie.new('fu')
+      expect(cubie_a.same?(cubie_b)).to be(false)
     end
 
   end
