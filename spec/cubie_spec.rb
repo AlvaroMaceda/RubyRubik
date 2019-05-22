@@ -26,6 +26,36 @@ RSpec.describe 'Cubie' do
     expect(hash[Cubie.new('bl')]).to eql(Cubie.new('dr'))
   end
 
+  it 'applies a permutation' do
+    pending
+  end
+
+  it 'applies a string permutation' do
+    pending
+  end
+
+  it 'doesn\'t change if the permutation not affects the cubie' do
+    pending
+  end
+
+  it 'applies a permutation with rotation' do
+    # Pair each facelet
+    # Permutation
+    # ufl => rfu
+    # urf => rdf
+    # rdf => dlf
+    # dlf => luf
+    # Applying ufl=>rfu to luf
+    # It gives now: rfu
+    # It must give: urf
+    # Applying urf => rdf to rfu
+    # It gives now: rdf
+    # It must give: dfr
+    cubie = Cubie.new('luf')
+    permutation = { Cubie.new('ufl') => Cubie.new('rfu')}
+    expect(cubie.permute())
+  end
+
   context 'Corner Cubies:' do
 
     it 'is the same of the same cubie' do
@@ -50,9 +80,11 @@ RSpec.describe 'Cubie' do
       cubie_a = Cubie.new('urb')
       cubie_b = Cubie.new('bur')
       cubie_c = Cubie.new('rbu')
+      cubie_d = Cubie.new('rub')
       expect(cubie_a.same? cubie_b).to be(true)
       expect(cubie_a.same? cubie_c).to be(true)
       expect(cubie_b.same? cubie_c).to be(true)
+      expect(cubie_b.same? cubie_d).to be(false)
     end
 
   end
