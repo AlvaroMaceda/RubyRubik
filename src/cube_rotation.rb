@@ -9,34 +9,21 @@ class CubeRotation < Permutation
     super changes.map { |from,to| [Cubie.new(from), Cubie.new(to)] }.to_h
   end
 
-  def image_of(element)
-    return element unless @changes[element]
-
-    @changes[element]
-
-    # Pair each facelet
-    # Permutation
-    # ufl => rfu
-    # urf => rdf
-    # rdf => dlf
-    # dlf => luf
-    # Applying ufl=>rfu to luf
-    # It gives now: rfu
-    # It must give: urf
-
-  end
-
   public
+
+  def image_of(element)
+    element.permute(@changes)
+  end
 
   IDENTITY = CubeRotation.new({})
 
   # Corners are listed always in clockwise order
 
   F = CubeRotation.new(
-    # 'uf' => 'rf',
-    # 'lf' => 'uf',
-    # 'bf' => 'lf',
-    # 'rf' => 'bf',
+    'uf' => 'rf',
+    'lf' => 'uf',
+    'bf' => 'lf',
+    'rf' => 'bf',
 
     'ufl' => 'rfu',
     'urf' => 'rdf',

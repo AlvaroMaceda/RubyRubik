@@ -233,5 +233,12 @@ class Permutation
 public
 
   IDENTITY = Permutation.new({})
+  # noinspection RubyInstanceMethodNamingConvention
+  # class << self
+  #   def IDENTITY
+  #     self.class.new({})
+  #   end
+  # end
+
 
 end

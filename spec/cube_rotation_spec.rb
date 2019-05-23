@@ -12,16 +12,17 @@ RSpec.describe 'CubeRotation' do
     expect(Cube::F^4).to eql Cube::IDENTITY
   end
 
-  xit 'manages rotations' do
+  it 'manages rotations' do
+    # noinspection RubyStringKeysInHashInspection
     expected_f2 = {
-      # 'uf'=>'bf',
-      # 'lf'=>'rf',
-      # 'bf'=>'uf',
-      # 'rf'=>'lf',
-      'ufl'=>'dfr',
-      'urf'=>'dlf',
-      'rdf'=>'luf',
-      'dlf'=>'urf'
+      'uf' => 'bf',
+      'lf' => 'rf',
+      'bf' => 'uf',
+      'rf' => 'lf',
+      'ufl' => 'dfr',
+      'urf' => 'dlf',
+      'rdf' => 'luf',
+      'dlf' => 'urf'
     }
     expect((F^2).changes).to eql expected_f2
     

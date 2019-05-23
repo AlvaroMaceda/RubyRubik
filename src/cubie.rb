@@ -8,7 +8,7 @@ class Cubie
     @position = position.to_s
   end
 
-  def == (cubie)
+  def ==(cubie)
     return false unless cubie.kind_of? Cubie
 
     cubie.position.rotation_of? position
