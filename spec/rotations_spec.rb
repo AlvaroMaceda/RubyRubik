@@ -129,30 +129,42 @@ RSpec.describe 'rotation_of?' do
       array1 = [1,2,3,4,5]
       array2 = [5,1,2,3,4]
       rotations = Rotations::number_of_rotations(array1, array2)
-      expect(rotations).to eql(1)
+      expect(rotations).to eql(4)
 
       array1 = [1,2,3,4,5]
       array2 = [4,5,1,2,3]
       rotations = Rotations::number_of_rotations(array1, array2)
-      expect(rotations).to eql(2)
+      expect(rotations).to eql(3)
 
       array1 = [1,2,3,4,5]
       array2 = [2,3,4,5,1]
       rotations = Rotations::number_of_rotations(array1, array2)
-      expect(rotations).to eql(4)
+      expect(rotations).to eql(1)
     end
 
-    it 'returns -1 if not a rotation' do
+    it 'returns nil if not a rotation' do
       array1 = [1,2,3,4,5]
       array2 = [1,3,2,4,5]
       rotations = Rotations::number_of_rotations(array1, array2)
-      expect(rotations).to eql(-1)
+      expect(rotations).to eql(nil)
 
       array1 = ["banana","papaya"]
       array2 = ["banananana","papaya"]
       rotations = Rotations::number_of_rotations(array1, array2)
-      expect(rotations).to eql(-1)
+      expect(rotations).to eql(nil)
     end
+
+  end
+
+  context 'String rotations' do
+
+    it 'rotates an string' do
+      string    = '123456'
+      rotations = 4
+      expected  = '561234'
+      expect(string.rotate(rotations)).to eql(expected)
+    end
+
 
   end
 

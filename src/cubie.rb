@@ -27,11 +27,8 @@ class Cubie
     from_element = get_real_key(permutation,self)
     to_element = permutation[self]
 
-    # Applying ufl=>rfu to luf
-    # It gives now: rfu
-    # It must give: urf
-
-    to_element
+    rotations = Rotations::number_of_rotations(self.to_s.chars,from_element.to_s.chars)
+    Cubie.new(to_element.rotate(-rotations))
   end
 
   def to_s
@@ -40,6 +37,10 @@ class Cubie
 
   def hash
     self.canonical_form.hash
+  end
+
+  def rotate(rotations)
+    Cubie.new(@position.to_s.rotate(rotations))
   end
 
   protected
