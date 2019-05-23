@@ -1,6 +1,4 @@
-require_relative 'cubie'
-require_relative 'rotations'
-# require_relative 'rotation_of.rb'
+require_relative 'cube_rotation'
 
 # F = CubeRotation::F
 # p F.cycles
@@ -8,13 +6,14 @@ require_relative 'rotations'
 
 
 
-# Cube = CubeRotation
-# F = Cube::F
-# f2 = F^2
-# # f2 = F*F
-# # puts F.changes
-# # puts f2.class.name
-# puts f2.changes
+Cube = CubeRotation
+F = Cube::F
+f2 = F^2
+# f2 = F*F
+# puts F.changes
+# puts f2.class.name
+puts f2.changes
+p f2.cycles
 
 
 

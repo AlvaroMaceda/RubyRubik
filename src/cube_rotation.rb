@@ -15,20 +15,32 @@ class CubeRotation < Permutation
     element.permute(@changes)
   end
 
+  def changes
+    @changes.map { |from,to| [from.to_s, to.to_s] }.to_h
+  end
+
+  def to_s
+    changes.to_s
+  end
+
+  def cycles
+    super.map { |from,to| [from.to_s, to.to_s] }
+  end
+
   IDENTITY = CubeRotation.new({})
 
   # Corners are listed always in clockwise order
 
   F = CubeRotation.new(
-    'uf' => 'rf',
-    'lf' => 'uf',
-    'bf' => 'lf',
-    'rf' => 'bf',
+  'uf' => 'rf',
+  'lf' => 'uf',
+  'bf' => 'lf',
+  'rf' => 'bf',
 
-    'ufl' => 'rfu',
-    'urf' => 'rdf',
-    'rdf' => 'dlf',
-    'dlf' => 'luf'
+  'ufl' => 'rfu',
+  'urf' => 'rdf',
+  'rdf' => 'dlf',
+  'dlf' => 'luf'
   )
 
   # U = CubeRotation.new(
@@ -43,17 +55,17 @@ class CubeRotation < Permutation
   #   'ufr' => 'urf'
   # )
 
-  # R = CubeRotation.new(
-  #   'ur' => 'br',
-  #   'fr' => 'ur',
-  #   'dr' => 'fr',
-  #   'br' => 'dr',
-  #
-  #   'urf' => 'bru',
-  #   'ubr' => 'bdr',
-  #   'bdr' => 'dfr',
-  #   'rdf' => 'rfu'
-  # )
+  R = CubeRotation.new(
+  'ur' => 'br',
+    'fr' => 'ur',
+    'dr' => 'fr',
+    'br' => 'dr',
+
+    'urf' => 'bru',
+    'ubr' => 'bdr',
+    'bdr' => 'dfr',
+    'rdf' => 'rfu'
+  )
 
   # x = CubeRotation.new(
   #   '' => '',
@@ -66,10 +78,6 @@ class CubeRotation < Permutation
   #   '' => '',
   #   '' => ''
   # )
-
-  def changes
-    @changes.map { |from,to| [from.to_s, to.to_s] }.to_h
-  end
 
 
 end
