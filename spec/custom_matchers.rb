@@ -1,22 +1,30 @@
 require 'rspec/expectations'
 require './src/rotations.rb'
 
+
+def has_same_cycles(array1, array2)
+  array1 = array1.clone
+  array2 = array2.clone
+
+  until array1.empty?
+    checking = array1.shift
+    index_of_element = search_element_rotated(array2,checking)
+    return false unless index_of_element
+
+    array2.delete_at index_of_element
+  end
+
+  array2.empty?
+end
+
+def search_element_rotated(array,search)
+  array.index { |element| search.rotation_of?(element) }
+end
+
 RSpec::Matchers.define :be_the_same_cycles_as do |expected|
 
   match do |actual|
-
-    actual = actual.clone
-    expected = expected.clone
-
-    until actual.empty?
-      checking = actual.shift
-      i = expected.index { |element| checking.rotation_of?(element) }
-      return false unless i
-
-      expected.delete_at i
-    end
-
-    expected.empty?
+    has_same_cycles actual,expected
   end
 
   failure_message do |actual|
@@ -27,7 +35,6 @@ RSpec::Matchers.define :be_the_same_cycles_as do |expected|
     "expected that #{actual} would not contain the same cycles of #{expected}"
   end
 
-  # For --format documentation parameter of rspec
   description do
     "should be a rotation of #{expected}"
   end
@@ -37,7 +44,7 @@ end
 RSpec::Matchers.define :be_a_rotation_of do |expected|
 
   match do |actual|
-    rotation_of? actual, expected
+    actual.rotation_of? expected
   end
 
   failure_message do |actual|
@@ -48,30 +55,8 @@ RSpec::Matchers.define :be_a_rotation_of do |expected|
     "expected that #{actual} would not be a rotation of #{expected}"
   end
 
-  # For --format documentation parameter of rspec
   description do
     "should be a rotation of #{expected}"
-  end
-
-end
-
-RSpec::Matchers.define :be_a_multiple_of do |expected|
-
-  match do |actual|
-    actual % expected == 0
-  end
-
-  failure_message do |actual|
-    "expected that #{actual} would be a multiple of #{expected}"
-  end
-
-  failure_message_when_negated do |actual|
-    "expected that #{actual} would not be a multiple of #{expected}"
-  end
-
-  # For --format documentation parameter of rspec
-  description do
-    "should be multiple of #{expected}"
   end
 
 end
