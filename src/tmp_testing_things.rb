@@ -5,57 +5,50 @@ require_relative 'cubie'
 # F = CubeRotation::F
 # p F.cycles
 
-# h = {
-#   a: :b,
-#   b: :c
+
+def rotations_of(array1,array2)
+  # Works searching the first element of self in array and rotating array
+  # so that element be first, then comparing.
+  # We must search all occurrences of the first element because it can be duplicated
+  #
+  return true if array1 == [] and array2 == []
+  return false unless array1.length == array2.length
+
+  possible_rotations =  array2.each_index.select { |index| array2[index] == array1.first}
+
+  until possible_rotations.empty?
+    possible_rotation = possible_rotations.shift
+    return possible_rotation if array2.rotate(possible_rotation) == array1
+  end
+
+  false
+end
+
+a = [1,2,3,4]
+b = [4,1,2,3]
+c = [3,4,1,2]
+d = [2,3,4,1]
+n = [1,2,4,3]
+
+puts rotations_of(a,a)
+puts rotations_of(a,b)
+puts rotations_of(a,c)
+puts rotations_of(a,d)
+puts rotations_of(a,n)
+
+# rfl = Cubie.new('rfl')
+# flr = Cubie.new('flr')
+# abc = Cubie.new('BCA')
+#
+# p = {
+#     flr => abc
 # }
-#
-# p h.key(:c)
+# res = rfl.permute(p)
+# p res
 
 
-# class Banana
-#
-#   def == something
-#     puts '=='
-#     true
-#   end
-#
-#   def eql? something
-#     puts 'eql?'
-#     true
-#   end
-#
-# end
-#
-# a = Banana.new
-# puts a == 'hola'
 
-# a = Cubie.new('ufl')
-# b = Cubie.new('rbd')
-# c = Cubie.new('urf')
-#
-# h = {
-#     a => b,
-#     b => c
-# }
 
-rfl = Cubie.new('rfl')
-flr = Cubie.new('flr')
-foo = Cubie.new('foo')
-
-p = {
-    flr => foo
-}
-res = rfl.permute(p)
-p res
-
-# puts "papaya"
-# puts "*#{h.keys.index(b)}*"
-# p "*#{h.keys[h.keys.index(b)]}*"
-#
-# p h.keys[h.keys.index(b)]
-# p b
-# puts "banana"
 
 
 # Cube = CubeRotation
