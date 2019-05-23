@@ -1,5 +1,5 @@
 require 'rspec/expectations'
-require './src/rotation_of.rb'
+require './src/rotations.rb'
 
 RSpec::Matchers.define :be_the_same_cycles_as do |expected|
 

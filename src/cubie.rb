@@ -1,4 +1,4 @@
-require_relative 'rotation_of'
+require_relative 'rotations'
 
 class Cubie
 

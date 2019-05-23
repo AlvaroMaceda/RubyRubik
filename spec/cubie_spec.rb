@@ -51,7 +51,7 @@ RSpec.describe 'Cubie' do
     expect(cubie_permuted.same?cubie).to be(true)
   end
 
-  fit 'applies a permutation with rotation' do
+  it 'applies a permutation with rotation' do
     # Pair each facelet
     # Permutation
     # ufl => rfu

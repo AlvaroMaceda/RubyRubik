@@ -6,23 +6,8 @@ require_relative 'cubie'
 # p F.cycles
 
 
-def rotations_of(array1,array2)
-  # Works searching the first element of self in array and rotating array
-  # so that element be first, then comparing.
-  # We must search all occurrences of the first element because it can be duplicated
-  #
-  return true if array1 == [] and array2 == []
-  return false unless array1.length == array2.length
 
-  possible_rotations =  array2.each_index.select { |index| array2[index] == array1.first}
-
-  until possible_rotations.empty?
-    possible_rotation = possible_rotations.shift
-    return possible_rotation if array2.rotate(possible_rotation) == array1
-  end
-
-  false
-end
+puts "Banana" if 0
 
 a = [1,2,3,4]
 b = [4,1,2,3]
@@ -30,11 +15,11 @@ c = [3,4,1,2]
 d = [2,3,4,1]
 n = [1,2,4,3]
 
-puts rotations_of(a,a)
-puts rotations_of(a,b)
-puts rotations_of(a,c)
-puts rotations_of(a,d)
-puts rotations_of(a,n)
+puts number_of_rotations(a, a)
+puts number_of_rotations(a, b)
+puts number_of_rotations(a, c)
+puts number_of_rotations(a, d)
+puts number_of_rotations(a, n)
 
 # rfl = Cubie.new('rfl')
 # flr = Cubie.new('flr')

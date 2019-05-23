@@ -1,9 +1,9 @@
 require 'rspec'
-require './src/rotation_of.rb'
+require './src/rotations.rb'
 
 RSpec.describe 'rotation_of?' do
 
-  context 'Arrays' do
+  context 'rotation_of? with Arrays' do
 
     it 'accepts the array unchanged' do
       array1 = %i[a b c d]
@@ -54,7 +54,7 @@ RSpec.describe 'rotation_of?' do
 
   end
 
-  context 'Strings' do
+  context 'rotation_of? with Strings' do
 
     it 'accepts the string unchanged' do
       string1 = 'abc de'
@@ -102,5 +102,59 @@ RSpec.describe 'rotation_of?' do
     end
 
   end
+
+  context 'number_of_rotations' do
+
+    it 'returns 0 with empty arrays' do
+      array1 = []
+      array2 = []
+      rotations = Rotations::number_of_rotations(array1,array2)
+      expect(rotations).to eql(0)
+    end
+
+    it 'returns 0 with the same content' do
+
+      array1 = [1,2,3,4,5]
+      array2 = [1,2,3,4,5]
+      rotations = Rotations::number_of_rotations(array1, array2)
+      expect(rotations).to eql(0)
+
+      array1 = ["banana","papaya"]
+      array2 = ["banana","papaya"]
+      rotations = Rotations::number_of_rotations(array1, array2)
+      expect(rotations).to eql(0)
+    end
+
+    it 'returns the number of rotations' do
+      array1 = [1,2,3,4,5]
+      array2 = [5,1,2,3,4]
+      rotations = Rotations::number_of_rotations(array1, array2)
+      expect(rotations).to eql(1)
+
+      array1 = [1,2,3,4,5]
+      array2 = [4,5,1,2,3]
+      rotations = Rotations::number_of_rotations(array1, array2)
+      expect(rotations).to eql(2)
+
+      array1 = [1,2,3,4,5]
+      array2 = [2,3,4,5,1]
+      rotations = Rotations::number_of_rotations(array1, array2)
+      expect(rotations).to eql(4)
+    end
+
+    it 'returns -1 if not a rotation' do
+      array1 = [1,2,3,4,5]
+      array2 = [1,3,2,4,5]
+      rotations = Rotations::number_of_rotations(array1, array2)
+      expect(rotations).to eql(-1)
+
+      array1 = ["banana","papaya"]
+      array2 = ["banananana","papaya"]
+      rotations = Rotations::number_of_rotations(array1, array2)
+      expect(rotations).to eql(-1)
+    end
+
+  end
+
 
 end
