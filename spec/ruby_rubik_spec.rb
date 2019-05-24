@@ -49,15 +49,24 @@ RSpec.describe 'CubeRotation' do
     F2 = F*F
     # noinspection RubyStringKeysInHashInspection
     expected_cycles = [
-        ["uf", "df"], ["lf", "rf"],
-        ["ufl", "dfr"], ["urf", "dlf"]
+        ['uf', 'df'], ['lf', 'rf'],
+        ['ufl', 'dfr'], ['urf', 'dlf']
     ]
     expect(F2.cycles).to eql(expected_cycles)
   end
 
   it 'marks twisted cycles' do
-    _FR = !F*!R
-    p _FR.cycles
+    # _FR = !F*!R
+    # p _FR.cycles
+
+
+    FRi=F*!R
+    expected_cycles = [
+        ['uf', 'rd', 'rb', 'ru', 'rf', 'df', 'lf'],
+        ['ufl', 'rdf', 'dlf','+'],
+        ['urf', 'rbd', 'rub','-']
+    ]
+    expect(FRi.cycles).to be_the_same_cycles_as(expected_cycles)
   end
 
 end
