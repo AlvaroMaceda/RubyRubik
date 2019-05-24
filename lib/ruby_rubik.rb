@@ -1,7 +1,7 @@
-require_relative './permutation.rb'
-require_relative './cubie.rb'
+require 'ruby_rubik/permutation'
+require 'ruby_rubik/cubie'
 
-class CubeRotation < Permutation
+class RubyRubik < Permutation
 
   private
 
@@ -27,11 +27,11 @@ class CubeRotation < Permutation
     super.map { |from,to| [from.to_s, to.to_s] }
   end
 
-  IDENTITY = CubeRotation.new({})
+  IDENTITY = RubyRubik.new({})
 
   # Corners are listed always in clockwise order
 
-  F = CubeRotation.new(
+  F = RubyRubik.new(
   'uf' => 'rf',
   'lf' => 'uf',
   'bf' => 'lf',
@@ -55,7 +55,7 @@ class CubeRotation < Permutation
   #   'ufr' => 'urf'
   # )
 
-  R = CubeRotation.new(
+  R = RubyRubik.new(
   'ur' => 'br',
     'fr' => 'ur',
     'dr' => 'fr',
