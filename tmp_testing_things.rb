@@ -1,4 +1,4 @@
-require_relative 'cube_rotation'
+require 'ruby_rubik'
 
 # F = CubeRotation::F
 # p F.cycles
@@ -6,7 +6,7 @@ require_relative 'cube_rotation'
 
 
 
-Cube = CubeRotation
+Cube = RubyRubik
 F = Cube::F
 f2 = F^2
 # f2 = F*F

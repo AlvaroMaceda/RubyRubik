@@ -1,4 +1,4 @@
-require_relative 'rotations'
+require 'ruby_rubik/rotations'
 
 class Cubie
 

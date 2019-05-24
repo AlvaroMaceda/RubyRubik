@@ -1,7 +1,7 @@
 require 'rspec'
-require_relative '../src/cube_rotation.rb'
+require 'ruby_rubik'
 
-Cube = CubeRotation
+Cube = RubyRubik
 F = Cube::F
 # R = Cube::R
 # U = Cube::U

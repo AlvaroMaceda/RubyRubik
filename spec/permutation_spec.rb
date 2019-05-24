@@ -1,6 +1,6 @@
 require 'rspec'
 require 'custom_matchers'
-require './src/permutation.rb'
+require 'ruby_rubik/permutation'
 
 RSpec.describe 'Permutation' do
 
