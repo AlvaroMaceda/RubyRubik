@@ -1,18 +1,31 @@
 require 'rspec'
 require 'ruby_rubik'
+require 'custom_matchers'
 
 Cube = RubyRubik
 F = Cube::F
-# R = Cube::R
+# B = Cube::B
+R = Cube::R
+# L = Cube::L
 # U = Cube::U
+# D = Cube::D
 
 RSpec.describe 'CubeRotation' do
 
   it 'remains the same if a face is rotated four times' do
-    expect(Cube::F^4).to eql Cube::IDENTITY
+    expect(F^4).to eql Cube::IDENTITY
   end
 
-  it 'returns changes as a hash of strings' do
+  fit 'returns cycles of a face rotation' do
+    expected_cycles = [
+        ['uf','rf','df','lf'],
+        ['ufl','rfu','dfr','lfd']
+    ]
+    p = F.cycles
+    # expect(F.cycles).to be_the_same_cycles_as(expected_cycles)
+  end
+
+  xit 'returns changes as a hash of strings' do
     pending
     FR = ''
   end

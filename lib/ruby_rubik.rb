@@ -24,11 +24,10 @@ class RubyRubik < Permutation
   end
 
   def cycles
-    super.map { |from,to| [from.to_s, to.to_s] }
+    cycles_elements_to_string super
   end
 
   def cycle_from(element)
-    # raise "to-do"
     cycle = []
     until cycle.include? element
       cycle << element
@@ -89,5 +88,12 @@ class RubyRubik < Permutation
   #   '' => ''
   # )
 
+  private
+
+  def cycles_elements_to_string(cycles)
+    cycles.map do |cycle|
+      cycle.map {|cubie| cubie.to_s}
+    end
+  end
 
 end
