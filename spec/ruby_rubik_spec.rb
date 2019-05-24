@@ -16,13 +16,13 @@ RSpec.describe 'CubeRotation' do
     expect(F^4).to eql Cube::IDENTITY
   end
 
-  fit 'returns cycles of a face rotation' do
+  it 'returns cycles of a face rotation' do
+    # noinspection RubyLiteralArrayInspection
     expected_cycles = [
         ['uf','rf','df','lf'],
         ['ufl','rfu','dfr','lfd']
     ]
-    p = F.cycles
-    # expect(F.cycles).to be_the_same_cycles_as(expected_cycles)
+    expect(F.cycles).to be_the_same_cycles_as(expected_cycles)
   end
 
   xit 'returns changes as a hash of strings' do
@@ -33,9 +33,9 @@ RSpec.describe 'CubeRotation' do
   it 'manages rotations' do
     # noinspection RubyStringKeysInHashInspection
     expected_f2 = {
-      'uf' => 'bf',
+      'uf' => 'df',
       'lf' => 'rf',
-      'bf' => 'uf',
+      'df' => 'uf',
       'rf' => 'lf',
       'ufl' => 'dfr',
       'urf' => 'dlf',
@@ -47,7 +47,11 @@ RSpec.describe 'CubeRotation' do
 
   it 'return cycles positions as strings' do
     F2 = F*F
-    expected_cycles = [["uf", "bf"], ["lf", "rf"], ["ufl", "dfr"], ["urf", "dlf"]]
+    # noinspection RubyStringKeysInHashInspection
+    expected_cycles = [
+        ["uf", "df"], ["lf", "rf"],
+        ["ufl", "dfr"], ["urf", "dlf"]
+    ]
     expect(F2.cycles).to eql(expected_cycles)
   end
 

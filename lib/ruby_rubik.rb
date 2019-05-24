@@ -43,8 +43,8 @@ class RubyRubik < Permutation
   F = RubyRubik.new(
   'uf' => 'rf',
   'lf' => 'uf',
-  'bf' => 'lf',
-  'rf' => 'bf',
+  'df' => 'lf',
+  'rf' => 'df',
 
   'ufl' => 'rfu',
   'urf' => 'rdf',
