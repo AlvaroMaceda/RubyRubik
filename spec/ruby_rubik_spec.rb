@@ -17,11 +17,6 @@ RSpec.describe 'CubeRotation' do
     FR = ''
   end
 
-  it 'return cycles positions as strings' do
-    pending
-    F2 = [["uf", "bf"], ["lf", "rf"], ["ufl", "dfr"], ["urf", "dlf"]]
-  end
-
   it 'manages rotations' do
     # noinspection RubyStringKeysInHashInspection
     expected_f2 = {
@@ -35,6 +30,15 @@ RSpec.describe 'CubeRotation' do
       'dlf' => 'urf'
     }
     expect((F^2).changes).to eql expected_f2
+  end
+
+  it 'return cycles positions as strings' do
+    F2 = F*F
+    expected_cycles = [["uf", "bf"], ["lf", "rf"], ["ufl", "dfr"], ["urf", "dlf"]]
+    expect(F2.cycles).to eql(expected_cycles)
+  end
+
+  it 'marks twisted cycles' do
 
   end
 

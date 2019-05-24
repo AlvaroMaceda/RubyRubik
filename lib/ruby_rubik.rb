@@ -27,6 +27,16 @@ class RubyRubik < Permutation
     super.map { |from,to| [from.to_s, to.to_s] }
   end
 
+  def cycle_from(element)
+    # raise "to-do"
+    cycle = []
+    until cycle.include? element
+      cycle << element
+      element = image_of(element)
+    end
+    cycle
+  end
+
   IDENTITY = RubyRubik.new({})
 
   # Corners are listed always in clockwise order
