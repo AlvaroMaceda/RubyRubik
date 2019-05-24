@@ -1,5 +1,5 @@
 require 'rspec'
-require 'rotations'
+require 'ruby_rubik/rotations'
 
 RSpec.describe 'rotation_of?' do
 

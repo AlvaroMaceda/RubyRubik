@@ -1,8 +1,36 @@
 # RubyRubik
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ruby_rubik`. To experiment with that code, run `bin/console` for an interactive prompt.
+Utilities for working with Rubik's cube permutation group.
 
-TODO: Delete this and the text above, and describe your gem
+This gem provides cube's rotations: 
+- RubiRubik::F = {TODO}
+- RubiRubik::R = {TODO}
+- etc. 
+
+You can combine permutations:
+```ruby
+R = RubyRubik::R
+F = RubyRubik::F
+puts F*R
+    
+```
+Get the inverse of a permutation:
+```ruby
+TO-DO: put an example here
+```
+Power the permutation to a positive or negative number:
+```ruby
+TO-DO: put an example here
+```
+Print the cycles of a permutation:
+```ruby
+TO-DO: put an example here
+```
+The gem also includes an utility for working with permutations in general in the form:
+```ruby
+require 'ruby_rubik/permutation'
+TO-DO: put an example here
+```
 
 ## Installation
 
@@ -22,7 +50,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use the gem:
+```ruby
+TO-DO: put an example here
+```
+
+You can use it with irb:
+```shell
+$irb -r ruby_rubik
+TODO: put an example here
+```
 
 ## Development
 
@@ -32,10 +69,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/ruby_rubik. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/AlvaroMaceda/ruby_rubik. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+The gem is available as Public Domain.
 

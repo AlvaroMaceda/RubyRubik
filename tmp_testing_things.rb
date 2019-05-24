@@ -1,4 +1,4 @@
-require_relative 'cube_rotation'
+require 'ruby_rubik'
 
 # F = CubeRotation::F
 # p F.cycles

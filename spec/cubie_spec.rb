@@ -1,5 +1,5 @@
 require 'rspec'
-require 'cubie'
+require 'ruby_rubik/cubie'
 
 RSpec.describe 'Cubie' do
 

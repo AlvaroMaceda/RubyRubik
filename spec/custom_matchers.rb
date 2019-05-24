@@ -1,5 +1,5 @@
 require 'rspec/expectations'
-require 'rotations'
+require 'ruby_rubik/rotations'
 
 
 def has_same_cycles(array1, array2)
