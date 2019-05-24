@@ -56,7 +56,8 @@ RSpec.describe 'CubeRotation' do
   end
 
   it 'marks twisted cycles' do
-
+    _FR = !F*!R
+    p _FR.cycles
   end
 
 end
