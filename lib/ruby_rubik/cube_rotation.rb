@@ -1,9 +1,9 @@
 require 'ruby_rubik/permutation'
 require 'ruby_rubik/cubie'
 
-class CubePermutation < Permutation
+class CubeRotation < Permutation
 
-  IDENTITY = CubePermutation.new({})
+  IDENTITY = CubeRotation.new({})
 
   def initialize(changes)
     super changes.map { |from,to| [Cubie.new(from), Cubie.new(to)] }.to_h

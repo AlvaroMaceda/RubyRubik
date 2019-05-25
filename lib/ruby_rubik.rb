@@ -1,21 +1,33 @@
-require 'ruby_rubik/cube_permutation'
+require 'ruby_rubik/cube_rotation'
 
 class RubyRubik
 
-  IDENTITY = CubePermutation::IDENTITY
+  IDENTITY = CubeRotation::IDENTITY
 
   # Corners are listed always in clockwise order
 
-  F = CubePermutation.new(
-  'uf' => 'rf',
-  'lf' => 'uf',
-  'df' => 'lf',
-  'rf' => 'df',
+  F = CubeRotation.new(
+    'uf' => 'rf',
+    'rf' => 'df',
+    'df' => 'lf',
+    'lf' => 'uf',
 
-  'ufl' => 'rfu',
-  'urf' => 'rdf',
-  'rdf' => 'dlf',
-  'dlf' => 'luf'
+    'rfu' => 'dfr',
+    'dfr' => 'lfd',
+    'lfd' => 'ufl',
+    'ufl' => 'rfu'
+  )
+
+  B = CubeRotation.new(
+    'ub' => 'lb',
+    'lb' => 'db',
+    'db' => 'rb',
+    'rb' => 'ub',
+
+    'rub' => 'ulb',
+    'ulb' => 'ldb',
+    'ldb' => 'drb',
+    'drb' => 'rub'
   )
 
   # U = CubeRotation.new(
@@ -30,16 +42,30 @@ class RubyRubik
   #   'ufr' => 'urf'
   # )
 
-  R = CubePermutation.new(
-  'ur' => 'br',
-    'fr' => 'ur',
-    'dr' => 'fr',
-    'br' => 'dr',
 
-    'urf' => 'bru',
+  # x = CubeRotation.new(
+  #   '' => '',
+  #   '' => '',
+  #   '' => '',
+  #   '' => '',
+  #
+  #   '' => '',
+  #   '' => '',
+  #   '' => '',
+  #   '' => ''
+  # )
+
+
+  R = CubeRotation.new(
+    'ur' => 'br',
+    'br' => 'dr',
+    'dr' => 'fr',
+    'fr' => 'ur',
+
+    'fur' => 'ubr',
     'ubr' => 'bdr',
     'bdr' => 'dfr',
-    'rdf' => 'rfu'
+    'dfr' => 'fur'
   )
 
   # x = CubeRotation.new(
