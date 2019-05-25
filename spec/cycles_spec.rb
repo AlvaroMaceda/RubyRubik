@@ -48,4 +48,11 @@ RSpec.describe 'Cycle' do
     expect(Cycles::same?(cycle1, cycle2))
   end
 
+  it 'cant be initialized with non-array objects' do
+    expect {
+      Cycles.new('banana')
+    }.to raise_error RuntimeError
+  end
+
+
 end

@@ -1,9 +1,6 @@
 require 'rspec/expectations'
 require 'ruby_rubik/cycles'
 
-
-
-
 RSpec::Matchers.define :be_the_same_cycles_as do |expected|
 
   match do |actual|

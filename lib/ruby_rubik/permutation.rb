@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Permutation
 
   def initialize(changes)
@@ -99,26 +100,12 @@ class Permutation
 
 
   def cycles
-    remaining_changes = @changes.clone
-
-    calculated_cycles = []
-    until remaining_changes.empty?
-      cycle_elements = cycle_from(remaining_changes.keys.first)
-      calculated_cycles << cycle_elements
-      remaining_changes.delete_if { |key, _| cycle_elements.include? key }
-    end
-
-    calculated_cycles
+    @cycles || (@cycles = Cycles::from_permutation(self))
   end
 
 
-  def cycle_from(element)
-    cycle = []
-    until cycle.include? element
-      cycle << element
-      element = image_of(element)
-    end
-    cycle
+  def to_h
+    @changes.to_h
   end
 
 

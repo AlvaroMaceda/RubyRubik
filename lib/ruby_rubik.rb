@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'ruby_rubik/cube_rotation'
 
 class RubyRubik
