@@ -1,46 +1,12 @@
-require 'ruby_rubik/permutation'
-require 'ruby_rubik/cubie'
+require 'ruby_rubik/cube_permutation'
 
-class RubyRubik < Permutation
+class RubyRubik
 
-  private
-
-  def initialize(changes)
-    super changes.map { |from,to| [Cubie.new(from), Cubie.new(to)] }.to_h
-  end
-
-  public
-
-  def image_of(element)
-    element.permute(@changes)
-  end
-
-  def changes
-    @changes.map { |from,to| [from.to_s, to.to_s] }.to_h
-  end
-
-  def to_s
-    changes.to_s
-  end
-
-  def cycles
-    cycles_elements_to_string super
-  end
-
-  def cycle_from(element)
-    cycle = []
-    until cycle.include? element
-      cycle << element
-      element = image_of(element)
-    end
-    cycle
-  end
-
-  IDENTITY = RubyRubik.new({})
+  IDENTITY = CubePermutation::IDENTITY
 
   # Corners are listed always in clockwise order
 
-  F = RubyRubik.new(
+  F = CubePermutation.new(
   'uf' => 'rf',
   'lf' => 'uf',
   'df' => 'lf',
@@ -64,7 +30,7 @@ class RubyRubik < Permutation
   #   'ufr' => 'urf'
   # )
 
-  R = RubyRubik.new(
+  R = CubePermutation.new(
   'ur' => 'br',
     'fr' => 'ur',
     'dr' => 'fr',
@@ -88,12 +54,6 @@ class RubyRubik < Permutation
   #   '' => ''
   # )
 
-  private
 
-  def cycles_elements_to_string(cycles)
-    cycles.map do |cycle|
-      cycle.map {|cubie| cubie.to_s}
-    end
-  end
 
 end

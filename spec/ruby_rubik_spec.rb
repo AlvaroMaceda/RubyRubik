@@ -17,17 +17,39 @@ RSpec.describe 'CubeRotation' do
   end
 
   it 'returns cycles of a face rotation' do
-    # noinspection RubyLiteralArrayInspection
     expected_cycles = [
-        ['uf','rf','df','lf'],
-        ['ufl','rfu','dfr','lfd']
+      ['uf','rf','df','lf'],
+      ['ufl','rfu','dfr','lfd']
     ]
     expect(F.cycles).to be_the_same_cycles_as(expected_cycles)
   end
 
+  it 'show items which are only twisted in rotations' do
+    fr = F*R
+    expected_changes = {
+      'uf' => 'ru',
+      'rf' => 'df',
+      'df' => 'lf',
+      'lf' => 'uf',
+
+      'ur' => 'br',
+      'br' => 'dr',
+      'dr' => 'fr',
+
+      'ufl' => 'rub',
+      'urf' => 'rfu',
+      'rdf' => 'dlf',
+      'fdl' => 'flu',
+
+      'ubr' => 'bdr',
+      'bdr' => 'dfr',
+    }
+    expect(fr.changes).to eql(expected_changes)
+  end
+
   xit 'returns changes as a hash of strings' do
     pending
-    FR = ''
+    fr = ''
   end
 
   it 'manages rotations' do
@@ -46,27 +68,26 @@ RSpec.describe 'CubeRotation' do
   end
 
   it 'return cycles positions as strings' do
-    F2 = F*F
-    # noinspection RubyStringKeysInHashInspection
+    f2 = F*F
     expected_cycles = [
-        ['uf', 'df'], ['lf', 'rf'],
-        ['ufl', 'dfr'], ['urf', 'dlf']
+      ['uf', 'df'], ['lf', 'rf'],
+      ['ufl', 'dfr'], ['urf', 'dlf']
     ]
-    expect(F2.cycles).to eql(expected_cycles)
+    expect(f2.cycles).to eql(expected_cycles)
   end
 
-  it 'marks twisted cycles' do
+  xit 'marks twisted cycles' do
     # _FR = !F*!R
     # p _FR.cycles
 
 
-    FRi=F*!R
+    fri = F*!R
     expected_cycles = [
         ['uf', 'rd', 'rb', 'ru', 'rf', 'df', 'lf'],
         ['ufl', 'rdf', 'dlf','+'],
         ['urf', 'rbd', 'rub','-']
     ]
-    expect(FRi.cycles).to be_the_same_cycles_as(expected_cycles)
+    expect(fri.cycles).to be_the_same_cycles_as(expected_cycles)
   end
 
 end
