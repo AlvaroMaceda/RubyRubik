@@ -1,4 +1,39 @@
 # frozen_string_literal: true
+
+
+class Cycle
+
+  class << self
+
+    def from_element(element, permutation)
+      cycle = self.new
+      until cycle.include? element
+        cycle << element
+        element = permutation.image_of(element)
+      end
+      cycle
+    end
+
+  end
+
+  def initialize
+    @elements = []
+  end
+
+  def include?(element)
+    @elements.include? element
+  end
+
+  def <<(element)
+    raise 'Duplicated element' if include? element
+
+    @elements << element
+  end
+
+
+end
+
+
 class Cycles
 
   class << self
